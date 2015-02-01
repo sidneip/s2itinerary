@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Map do
-  describe 'instantiation' do
+  context 'validations' do
     let!(:map) { build(:map) }
     it 'instantiates a map' do
       expect(map.class.name).to eq('Map')

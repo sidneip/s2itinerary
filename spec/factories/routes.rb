@@ -1,9 +1,8 @@
 FactoryGirl.define do
   factory :route do
-    origin "MyString"
-destination "MyString"
-distance "9.99"
-map nil
+    origin 'A'
+    destination 'B'
+    distance '10'
+    association :map, factory: :map
   end
-
 end
