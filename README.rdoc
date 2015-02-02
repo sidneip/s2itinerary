@@ -2,6 +2,11 @@
 
 Sistema para calculo de melhor rota.
 
+### Pendente
+
+Criar metodos para calculo de efiencia do caminhão
+Refatorar controllers para redirecionar para view
+
 ### Instalação
 
 Siga os passos
