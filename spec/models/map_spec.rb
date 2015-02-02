@@ -19,5 +19,16 @@ describe Map do
       map_new = Map.create(name: 'Araraquara')
       expect(map_new.errors[:name]).to include('has already been taken')
     end
+    it 'call method best route' do
+      map.save!
+      map.routes.create(origin: 'A', destination: 'B', distance: 10)
+      map.routes.create(origin: 'B', destination: 'D', distance: 15)
+      map.routes.create(origin: 'A', destination: 'C', distance: 20)
+      map.routes.create(origin: 'C', destination: 'D', distance: 30)
+      map.routes.create(origin: 'B', destination: 'E', distance: 50)
+      map.routes.create(origin: 'D', destination: 'E', distance: 30)
+      best_route = map.best_route('A', 'D')
+      expect(best_route).to eq [['A', 'B', 'D'], 25]
+    end
   end
 end
