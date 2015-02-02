@@ -30,5 +30,13 @@ describe Map do
       best_route = map.best_route('A', 'D')
       expect(best_route).to eq [['A', 'B', 'D'], 25]
     end
+    it 'method calculate cost' do
+      cost = map.calculate_cost(25, 10, 2.50)
+      expect(cost).to eq 6.25
+    end
+    it 'method calculate cost params nil' do
+      cost = map.calculate_cost(nil, nil, nil)
+      expect(cost).to eq nil
+    end
   end
 end
