@@ -9,4 +9,9 @@ class Map < ActiveRecord::Base
     end
     Graph.new(routes).shortest_path(origin, destination)
   end
+
+  def calculate_cost(distance, efficiency, cost_gas)
+    return nil if distance.nil? || efficiency.nil? || cost_gas.nil?
+    (distance.to_f / efficiency.to_f) * cost_gas.to_f
+  end
 end
