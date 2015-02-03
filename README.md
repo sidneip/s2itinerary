@@ -9,6 +9,8 @@ Sistema para calculo de melhor rota.
 
 ###Pendente
 Refatorar controllers para redirecionar para views no jbuilder
+Implementar resto de ações restful para api
+
 ### Instalação
 ```
 git clone https://github.com/sidneip/s2itinerary.git
