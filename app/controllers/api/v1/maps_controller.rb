@@ -15,6 +15,13 @@ class Api::V1::MapsController < ApplicationController
     end
   end
 
+  def destroy
+    @map = Map.find_by(name: params[:name])
+    raise ActiveRecord::RecordNotFound unless @map.present?
+    @map.destroy
+    head :no_content
+  end
+
   private
 
   def map_params

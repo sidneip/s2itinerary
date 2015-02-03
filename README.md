@@ -45,3 +45,6 @@ curl -X GET 'http://localhost:3000/v1/map/araraquara'
 curl -X GET 'http://localhost:3000/v1/route' -d map=araraquara -d origin=A -d destination=B
 {"map":"araraquara","route":{"origin":"A","destination":"B","distance":"10.0"}}
 ```
+### Deletar mapa e suas rotas
+curl -X DELETE 'http://localhost:3000/v1/map/araraquara'
+http status no_content
