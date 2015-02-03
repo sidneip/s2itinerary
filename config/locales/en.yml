@@ -21,3 +21,5 @@
 
 en:
   hello: "Hello world"
+  error_404_message: "not found"
+  required: "is required"
