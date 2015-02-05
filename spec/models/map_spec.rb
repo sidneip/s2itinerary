@@ -27,7 +27,8 @@ describe Map do
       map.routes.create(origin: 'C', destination: 'D', distance: 30)
       map.routes.create(origin: 'B', destination: 'E', distance: 50)
       map.routes.create(origin: 'D', destination: 'E', distance: 30)
-      best_route = Delivery.new('A', 'D', map).best_route
+      params = {origin: 'A', destination: 'D'}
+      best_route = Delivery.new(params, map).best_route
       expect(best_route).to eq [['A', 'B', 'D'], 25]
     end
     it 'method calculate cost' do
@@ -38,13 +39,15 @@ describe Map do
       map.routes.create(origin: 'C', destination: 'D', distance: 30)
       map.routes.create(origin: 'B', destination: 'E', distance: 50)
       map.routes.create(origin: 'D', destination: 'E', distance: 30)
-      delivery = Delivery.new('A', 'D', map)
-      cost = delivery.calculate_cost(25, 10, 2.50)
+      params = {origin: 'A', destination: 'D', efficiency: 10, cost:2.50}
+      delivery = Delivery.new(params, map)
+      cost = delivery.calculate_cost(25)
       expect(cost).to eq 6.25
     end
     it 'method calculate cost params nil' do
-      delivery = Delivery.new('A', 'D', map)
-      cost = delivery.calculate_cost(nil, nil, nil)
+      params = {origin: 'A', destination: 'D', efficiency: 10, cost:2.50}
+      delivery = Delivery.new(params, map)
+      cost = delivery.calculate_cost(nil)
       expect(cost).to eq nil
     end
   end
