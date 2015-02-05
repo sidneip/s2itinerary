@@ -3,9 +3,9 @@ class Api::V1::DeliveriesController < ApplicationController
   def search
     @map = Map.find_by(name: params[:map])
     render json: { errors: 'not found' }, status: :not_found unless @map.present?
-    delivery = Delivery.new(params[:origin], params[:destination], @map)
+    delivery = Delivery.new(params, @map)
     best_route, distance = delivery.best_route
-    cost = delivery.calculate_cost(distance, params[:efficiency], params[:cost])
+    cost = delivery.calculate_cost(distance)
     render json: { route: best_route, distance: distance, cost: cost}, status: :ok
   end
 
