@@ -27,15 +27,24 @@ describe Map do
       map.routes.create(origin: 'C', destination: 'D', distance: 30)
       map.routes.create(origin: 'B', destination: 'E', distance: 50)
       map.routes.create(origin: 'D', destination: 'E', distance: 30)
-      best_route = map.best_route('A', 'D')
+      best_route = Delivery.new('A', 'D', map).best_route
       expect(best_route).to eq [['A', 'B', 'D'], 25]
     end
     it 'method calculate cost' do
-      cost = map.calculate_cost(25, 10, 2.50)
+      map.save!
+      map.routes.create(origin: 'A', destination: 'B', distance: 10)
+      map.routes.create(origin: 'B', destination: 'D', distance: 15)
+      map.routes.create(origin: 'A', destination: 'C', distance: 20)
+      map.routes.create(origin: 'C', destination: 'D', distance: 30)
+      map.routes.create(origin: 'B', destination: 'E', distance: 50)
+      map.routes.create(origin: 'D', destination: 'E', distance: 30)
+      delivery = Delivery.new('A', 'D', map)
+      cost = delivery.calculate_cost(25, 10, 2.50)
       expect(cost).to eq 6.25
     end
     it 'method calculate cost params nil' do
-      cost = map.calculate_cost(nil, nil, nil)
+      delivery = Delivery.new('A', 'D', map)
+      cost = delivery.calculate_cost(nil, nil, nil)
       expect(cost).to eq nil
     end
   end
